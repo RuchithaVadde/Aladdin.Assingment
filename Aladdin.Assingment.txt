@@ -1,11 +1,15 @@
-def aladdin(magic, dist):
-    if sum(magic) < sum(dist): return -1
-    n = len(magic)
-    total_val = 0
-    start = 0
+def optimalPoint(magic,dist):
+    n=len(magic)
+    start=0
+    total_magic=0
+    curr_magic=0
     for i in range(n):
-        if total_val < 0:
-            start = i
-            total_val = 0
-        total_val += (magic[i] - dist[i])
-    return start
+        total_magic+=magic[i]-dist[i]
+        curr_magic+=magic[i]-dist[i]
+        if curr_magic<0:
+           start=i+1
+           curr_magic=0
+        if total_magic<0:
+            return-1
+        else:
+           return start
